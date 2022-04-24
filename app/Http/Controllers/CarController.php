@@ -15,6 +15,21 @@ class CarController extends Controller
                         ->header('Content-type', 'application/json');
     }
 
+    public function getCarById($id){
+        $car = Car::find($id);
+        $response = array(
+            'id'    => $car->id,
+            'info'  => $car->make . ' ' . $car->model,
+        );
+
+        if(isset($car->years)){
+            $response['years'] = $car->years->implode(', ');
+        }
+
+        return response(json_encode($response), 200)
+                        ->header('Content-type', 'application/json');
+    }
+
     public function store(Request $request) {
         $response = array();
         $requestContent = $request->all();

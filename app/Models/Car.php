@@ -9,4 +9,8 @@ class Car extends Model
 {
     use HasFactory;
     protected $table = 'cars';
+
+    public function years() {
+        return $this->belongsToMany(Year::class, 'car_year_relation', 'car_id', 'year_id');
+    }
 }

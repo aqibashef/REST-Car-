@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\YearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/cars', [CarController::class, 'getCars']);
+Route::get('/cars/{id}', [CarController::class, 'getCarById']);
 Route::post('/cars', [CarController::class, 'store']);
+Route::post('/cars/{id}/years', [YearController::class, 'setYearByCarId']);
